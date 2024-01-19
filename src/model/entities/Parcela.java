@@ -1,25 +1,28 @@
 package model.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Parcela {
-	private Date dataVencimento;
+	
+	private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private LocalDate dataVencimento;
 	private Double quantia;
 	
 	public Parcela() {
 		
 	}
 
-	public Parcela(Date dataVencimento, Double quantia) {
+	public Parcela(LocalDate dataVencimento, Double quantia) {
 		this.dataVencimento = dataVencimento;
 		this.quantia = quantia;
 	}
 
-	public Date getDataVencimento() {
+	public LocalDate getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(Date dataVencimento) {
+	public void setDataVencimento(LocalDate dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 
@@ -30,5 +33,11 @@ public class Parcela {
 	public void setQuantia(Double quantia) {
 		this.quantia = quantia;
 	}
+
+	@Override
+	public String toString() {
+		return dataVencimento.format(fmt) + " - " + String.format("%.2f", quantia);
+	} 
+	
 	
 }
